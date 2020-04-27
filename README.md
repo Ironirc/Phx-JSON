@@ -23,7 +23,7 @@ This package was developed since none of the existing serialisation packages (ST
 }
 ```
 
-### Serialization:
+### Serialization
 ```
 human := Human new.
 human name: 'John Doe'.
@@ -34,12 +34,12 @@ car owner: h.
 jsonString := car asPhxJsonString.
 ```
 
-### Resurrection:
+### Materialisation
 ```
 car := PhxJsonReader readFromString: jsonString.
 ```
 
-### Cycles are seamlessly resolved with references to "known instances"\
+### Cycles are seamlessly resolved with references to "known instances"
 e.g. these objects contain two cycles
 ```
 human := Human new.
@@ -79,6 +79,6 @@ human ownedCars: {car}.
 ```
 
 
-### Known issues:\
+### Known issues
 1/Differences in key/value order between smalltalk and javascript\
 2/Differences regarding presence of keys and nil values.
