@@ -34,7 +34,7 @@ car owner: h.
 jsonString := car asPhxJsonString.
 ```
 
-### Materialisation
+### Materialization
 ```
 car := PhxJsonReader readFromString: jsonString.
 ```
