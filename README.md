@@ -80,5 +80,5 @@ human ownedCars: {car}.
 
 
 ### Known issues
-1/Differences in key/value order between smalltalk and javascript\
-2/Differences regarding presence of keys and nil values.
+* Differences in key/value order between smalltalk and javascript\
+* Differences regarding presence of keys and nil values.
