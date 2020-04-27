@@ -34,4 +34,6 @@ Serialization:
 ```
 
 Resurrection:
+```
 car := PhxJsonReader readFromString: jsonString.
+```
