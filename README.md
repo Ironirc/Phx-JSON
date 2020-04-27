@@ -1,7 +1,9 @@
 # Phx-JSON
-Smalltalk object serialisation and materialisation (compatible with PharoJs)
+This package allows for Smalltalk/Javascript object serialisation and materialisation.\
+Thanks to PharoJs this works as well in Smalltalk as in Javascript.\
+This package was developed since none of the existing serialisation packages (STON, NeoJSON) are transpilable to Javascript using PharoJs.
 
-Serializes Smalltalk or Javascript (PharoJs) objects to pure JSON of the form:
+### Serializes to pure JSON of the form:
 ```
 {
 	"class": "Car",
@@ -21,19 +23,62 @@ Serializes Smalltalk or Javascript (PharoJs) objects to pure JSON of the form:
 }
 ```
 
-Serialization:
+### Serialization
 ```
-	| human car |
-	human := Human new.
-	human name: 'John Doe'.
-	car := Car new.
-	car color: 'Red'.
-	car purchasedAt: DateAndTime now.
-	car owner: h.
-	jsonString := car asPhxJsonString.
+human := Human new.
+human name: 'John Doe'.
+car := Car new.
+car color: 'Red'.
+car purchasedAt: DateAndTime now.
+car owner: h.
+jsonString := car asPhxJsonString.
 ```
 
-Resurrection:
+### Materialization
 ```
 car := PhxJsonReader readFromString: jsonString.
 ```
+
+### Cycles are seamlessly resolved with references to "known instances"
+e.g. these objects contain two cycles
+```
+human := Human new.
+human name: 'John Doe'.
+human parent: human.
+car := Car new.
+car color: 'Red'.
+car owner: human.
+human ownedCars: {car}.
+```
+
+### serializes as:
+```
+{
+	"class": "Car",
+	"instance": {
+		"color": "Red",
+		"owner": {
+			"class": "Human",
+			"instance": {
+				"name": "John Doe",
+				"parent": {
+					"instRef": 2
+				},
+				"ownedCars": {
+					"class": "Array",
+					"instance": [
+						{
+							"instRef": 1
+						}
+					]
+				}
+			}
+		}
+	}
+}
+```
+
+
+### Known issues
+* Differences in key/value order between smalltalk and javascript\
+* Differences regarding presence of keys and nil values.
