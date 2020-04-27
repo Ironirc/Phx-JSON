@@ -37,8 +37,8 @@ Resurrection:
 car := PhxJsonReader readFromString: jsonString.
 ```
 
-Cycles are seamlessly resolved with references to "known instances"
-e.g.
+Cycles are seamlessly resolved with references to "known instances"\
+e.g. these objects contain two cycles
 ```
 human := Human new.
 human name: 'John Doe'.
@@ -49,7 +49,34 @@ car owner: human.
 human ownedCars: {car}.
 ```
 
+serializes as:
+```
+{
+	"class": "Car",
+	"instance": {
+		"color": "Red",
+		"owner": {
+			"class": "Human",
+			"instance": {
+				"name": "John Doe",
+				"parent": {
+					"instRef": 2
+				},
+				"ownedCars": {
+					"class": "Array",
+					"instance": [
+						{
+							"instRef": 1
+						}
+					]
+				}
+			}
+		}
+	}
+}
+```
 
-Known issues:
-1/Differences in key/value order between smalltalk and javascript
+
+Known issues:\
+1/Differences in key/value order between smalltalk and javascript\
 2/Differences regarding presence of keys and nil values.
