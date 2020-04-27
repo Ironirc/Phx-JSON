@@ -3,7 +3,7 @@ This package allows for Smalltalk/Javascript object serialisation and materialis
 Thanks to PharoJs this works as well in Smalltalk as in Javascript.\
 This package was developed since none of the existing serialisation packages (STON, NeoJSON) are transpilable to Javascript using PharoJs.
 
-###Serializes Smalltalk or Javascript (PharoJs) objects to pure JSON of the form:
+### Serializes Smalltalk or Javascript (PharoJs) objects to pure JSON of the form:
 ```
 {
 	"class": "Car",
@@ -23,7 +23,7 @@ This package was developed since none of the existing serialisation packages (ST
 }
 ```
 
-###Serialization:
+### Serialization:
 ```
 human := Human new.
 human name: 'John Doe'.
@@ -34,12 +34,12 @@ car owner: h.
 jsonString := car asPhxJsonString.
 ```
 
-###Resurrection:
+### Resurrection:
 ```
 car := PhxJsonReader readFromString: jsonString.
 ```
 
-###Cycles are seamlessly resolved with references to "known instances"\
+### Cycles are seamlessly resolved with references to "known instances"\
 e.g. these objects contain two cycles
 ```
 human := Human new.
@@ -51,7 +51,7 @@ car owner: human.
 human ownedCars: {car}.
 ```
 
-###serializes as:
+### serializes as:
 ```
 {
 	"class": "Car",
@@ -79,6 +79,6 @@ human ownedCars: {car}.
 ```
 
 
-###Known issues:\
+### Known issues:\
 1/Differences in key/value order between smalltalk and javascript\
 2/Differences regarding presence of keys and nil values.
