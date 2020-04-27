@@ -125,7 +125,7 @@ PhxBridgedJsonSerialisationTests >> testSerializeInstRefs [
 		assert: [ {a.
 			a} asPhxJsonString ]
 		evaluatesTo:
-			'{"class":"Array","instance":[{"class":"Array","instance":[]},{"instRef":1}]}'.
+			'{"class":"Array","instance":[{"class":"Array","instance":[]},{"instRef":2}]}'.
 	self
 		assertEquivalent: [ {a.
 			a} asPhxJsonString ]

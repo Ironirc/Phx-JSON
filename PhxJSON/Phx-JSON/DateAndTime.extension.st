@@ -6,6 +6,11 @@ DateAndTime class >> instantiateWithPhxJsonReader: reader instanceJsonObject: js
 ]
 
 { #category : #'*Phx-JSON' }
+DateAndTime >> writePhxJsonOn: w [
+	self writePhxJsonObjectOn: w
+]
+
+{ #category : #'*Phx-JSON' }
 DateAndTime >> writePhxJsonRepresentationOn: w [
 	w writeQuoted: self asUTC asString
 ]

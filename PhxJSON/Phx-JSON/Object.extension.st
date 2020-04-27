@@ -17,6 +17,7 @@ Object >> asPhxJsonString [
 Object class >> instantiateWithPhxJsonReader: reader instanceJsonObject: jsonObject [
 	| obj |
 	obj := self new.
+	reader addKnownObject: obj.
 	jsonObject
 		keysAndValuesDo: [ :k :v | obj instVarNamed: k put: (reader readFromJsObjectOrDictionary: v) ].
 	^ obj 
@@ -33,15 +34,20 @@ Object class >> phxJsonClassName [
 ]
 
 { #category : #'*Phx-JSON' }
+Object >> writePhxJsonObjectOn: w [
+	^ w
+		doBetweenCurlyBraces: [ w writeKeyName: 'class' andValue: self class phxJsonClassName.
+			w comma.
+			w
+				writeKeyName: 'instance'
+				andValue: [ self writePhxJsonRepresentationOn: w ] ]
+]
+
+{ #category : #'*Phx-JSON' }
 Object >> writePhxJsonOn: w [
 	w
 		writeReferenceFor: self
-		or: [ w
-				doBetweenCurlyBraces: [ w writeKeyName: 'class' andValue: self class phxJsonClassName.
-					w comma.
-					w
-						writeKeyName: 'instance'
-						andValue: [ self writePhxJsonRepresentationOn: w ] ] ]
+		or: [ self writePhxJsonObjectOn: w ]
 ]
 
 { #category : #'*Phx-JSON' }

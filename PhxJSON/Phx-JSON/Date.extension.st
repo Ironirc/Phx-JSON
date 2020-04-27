@@ -6,6 +6,11 @@ Date class >> instantiateWithPhxJsonReader: reader instanceJsonObject: aString [
 ]
 
 { #category : #'*Phx-JSON' }
+Date >> writePhxJsonOn: w [
+	self writePhxJsonObjectOn: w
+]
+
+{ #category : #'*Phx-JSON' }
 Date >> writePhxJsonRepresentationOn: w [
 	w writeQuoted: self yyyymmdd
 ]

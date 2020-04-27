@@ -82,7 +82,6 @@ PhxJsonWriter >> writeReferenceFor: anObject or: aBlock [
 				ifFalse: [ self
 						doBetweenCurlyBraces: [ self writeKeyName: 'instRef' andValue: i ].
 					^ self ] ].
-	aBlock value.
-	knownObjects add: anObject
-
+	knownObjects add: anObject.
+	aBlock value
 ]

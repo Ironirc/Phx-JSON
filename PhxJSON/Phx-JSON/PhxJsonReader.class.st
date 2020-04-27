@@ -7,11 +7,6 @@ Class {
 	#category : #'Phx-JSON-Core'
 }
 
-{ #category : #testing }
-PhxJsonReader class >> areWeOnServer [
-^ (Smalltalk at: #PhxApp) notNil
-]
-
 { #category : #'instance creation' }
 PhxJsonReader class >> materializeJsonString: aString [
 	<javascript: 'return JSON.parse(aString)'>
@@ -29,6 +24,11 @@ PhxJsonReader class >> readFromJsObjectOrDictionary: jsObjectOrDictionary [
 PhxJsonReader class >> readFromString: aString [
 
 	^ self readFromJsObjectOrDictionary: (self materializeJsonString: aString)
+]
+
+{ #category : #'instance creation' }
+PhxJsonReader >> addKnownObject: anObject [
+	knownObjects add: anObject
 ]
 
 { #category : #'instance creation' }
@@ -66,9 +66,7 @@ PhxJsonReader >> readFromJsObjectOrDictionary: jsonObject [
 			class := Smalltalk at: className asSymbol ifAbsent: [ nil ].
 			class ifNil: [ self error: 'Class not found: ' , className ].
 			instJsonObject := jsonObject at: 'instance'.
-			^ knownObjects
-				add:
-					(class
+			^ (class
 						instantiateWithPhxJsonReader: self
 						instanceJsonObject: instJsonObject) ].
 	^ self error
