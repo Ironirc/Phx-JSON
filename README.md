@@ -3,7 +3,7 @@ This package allows for Smalltalk/Javascript object serialisation and materialis
 Thanks to PharoJs this works as well in Smalltalk as in Javascript.\
 This package was developed since none of the existing serialisation packages (STON, NeoJSON) are transpilable to Javascript using PharoJs.
 
-### Serializes Smalltalk or Javascript (PharoJs) objects to pure JSON of the form:
+### Serializes to pure JSON of the form:
 ```
 {
 	"class": "Car",
