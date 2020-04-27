@@ -26,11 +26,6 @@ PhxJsonTestResources class >> challingingObjectAvoidingDateAndTime [
 ]
 
 { #category : #tests }
-PhxJsonTestResources class >> date20190928 [
-	<javascript: 'return new Date("2019-09-28");'>
-]
-
-{ #category : #tests }
 PhxJsonTestResources class >> testOrg1 [
 	^ PhxJsonTestOrganisation new
 		code: 'TestOrg1';
